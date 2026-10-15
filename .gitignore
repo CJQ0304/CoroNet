@@ -1,0 +1,37 @@
+# ---------------------------------------------------------------------------
+# CoroNet 仓库忽略规则
+# 原则：只忽略"生成物"；源码 / 脚本 / 文档一律入库。
+# 构建目录约定：cd server && cmake -B build -DCMAKE_BUILD_TYPE=Release
+# ---------------------------------------------------------------------------
+
+# 构建目录与目标文件
+build/
+*.o
+*.a
+*.so
+
+# 可执行文件（正常只出现在 WSL 侧；写在这里是防手滑，避免二进制混进仓库）
+server/echo_server
+server/coro_echo_server
+server/http_server
+server/http_server_nowritev
+server/coronet_tests
+
+# 运行期日志（异步日志 / 压测原始输出）
+*.log
+coronet-*.log
+scaling-*.log
+sandbox-*.log
+
+# 脚本自检时用的临时目录
+sb*/
+tmp-*/
+
+# 编辑器与系统垃圾
+.vscode/
+.idea/
+# Visual Studio 工作区状态（含 .vsidx 等被 VS 占用的文件，add 时会 Permission denied）
+.vs/
+*.swp
+.DS_Store
+Thumbs.db
